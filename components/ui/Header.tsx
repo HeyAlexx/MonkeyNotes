@@ -7,13 +7,13 @@ import { Button } from "./button"
 function Header() {
     const user = null
     return (
-        <header 
-            className="bg-popover relative flex h-24 w-full items-center justify-between px-3 sm:px-8"
+        <header
+            className="bg-popover relative flex h-24 w-full items-center justify-between px-3 sm:px-8" 
             style={{ boxShadow: shadow,}}
         >
             <Link className="flex items-end gap-2" href="/">
             <Image
-                src="/goatius.png" 
+                src="/Designer.png" 
                 height={60}
                 width={60}
                 alt="Logo"
