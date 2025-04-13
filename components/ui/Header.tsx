@@ -22,7 +22,7 @@ function Header() {
             />
 
             <h1 className=" flex flex-col pb-1 text-2xl font-semibold leading-6">
-                GOAT <span>Notes</span>
+                Monkey <span>Notes</span>
                 </h1>
             </Link>
 
