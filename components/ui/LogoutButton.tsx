@@ -6,12 +6,12 @@ import { useState } from "react"
 import { resolve } from "path";
 //import { toast } from "sonner";
 import { useSonner } from "sonner";
-import { useRouter } from "next/router"
+import { useRouter } from "next/navigation"
 
 
 function LogoutButton() {
     //const {toast} = useSonner;
-    //const router = useRouter();
+    const router = useRouter();
     const [loading, setLoading] = useState(false);
 
     const handleLogOut = async () =>{
@@ -28,7 +28,7 @@ function LogoutButton() {
                 description:"You have been Successfully logged out",
                 variant:"Success",
             });*/
-       // router.push("/")
+        router.push("/")
         }else{ 
             "error"
             /*toast({
