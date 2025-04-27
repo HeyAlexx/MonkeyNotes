@@ -3,7 +3,7 @@ import "@/src/styles/globals.css";
 import { ThemeProvider } from "@/src/Providers/ThemeProvider"
 //import {Toast} from "@/components/ui/toaster"
 import { Toaster } from "@/components/ui/sonner";
-import Header from "@/components/ui/Header";
+import Header from "@/components/Header";
 import { Main } from "next/document";
 
 export const metadata: Metadata = {

@@ -1,10 +1,10 @@
 "use client"
 
 import { Loader, Loader2 } from "lucide-react"
-import { Button } from "./button"
+import { Button } from "./ui/button"
 import { useState } from "react"
 import { resolve } from "path";
-//import { toast } from "sonner";
+import { toast } from "sonner";
 import { useSonner } from "sonner";
 import { useRouter } from "next/navigation"
 
@@ -18,7 +18,9 @@ function LogoutButton() {
         setLoading(true)
 
         await new Promise((resolve) => setTimeout(resolve,2000));
+        
         const errorMessage =null;
+
         if(!errorMessage){  
             
         "some"
@@ -27,7 +29,7 @@ function LogoutButton() {
                 title:"Logged Out",
                 description:"You have been Successfully logged out",
                 variant:"Success",
-            });*/
+                });*/
         router.push("/")
         }else{ 
             "error"
@@ -35,7 +37,7 @@ function LogoutButton() {
                 title:"Error",
                 description:"errorMessage",
                 variant:"destructive",
-            });*/
+                    });*/
         }
 
 

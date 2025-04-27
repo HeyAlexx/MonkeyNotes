@@ -1,13 +1,13 @@
 import { shadow } from "@/src/styles/utils"
 import Link from "next/link"
 import Image from "next/image"
-import { Button } from "./button"
-import DarkModeToggle from "@/components/ui/DarkModeToggle"
+import { Button } from "./ui/button"
+import DarkModeToggle from "@/components/DarkModeToggle"
 import LogoutButton from "./LogoutButton"
 
 
 function Header() {
-    const user = 1
+    const user = null
     return (
         <header
             className="bg-popover relative flex h-24 w-full items-center justify-between px-3 sm:px-8" 
@@ -36,11 +36,11 @@ function Header() {
                     <>
                     <Button asChild>
                         <Link href="/sign-up" className="hidden sm:block">
-                        Login
+                        Sign Up
                         </Link>
                     </Button>
                     <Button asChild variant="outline">
-                        <Link href="/login">Login</Link>
+                        <Link href="/Login">Login</Link>
                     </Button>
                     </>
                 )
