@@ -31,8 +31,7 @@ function Header() {
             <div className=" flex gap-4">
                 {user ? (
                     <LogoutButton />
-                ) :
-                (
+                ) : (
                     <>
                     <Button asChild>
                         <Link href="/sign-up" className="hidden sm:block">
@@ -40,7 +39,9 @@ function Header() {
                         </Link>
                     </Button>
                     <Button asChild variant="outline">
-                        <Link href="/Login">Login</Link>
+                        <Link href="/Login">
+                        Login
+                        </Link>
                     </Button>
                     </>
                 )

@@ -73,7 +73,7 @@ function Authform({type}: Props) {
                     ""}`}
                 >
                 {isLoginForm ? "Sign Up" : "Login"}
-                </Link>               
+            </Link>               
             </p>
         </CardFooter>
     </form>;
