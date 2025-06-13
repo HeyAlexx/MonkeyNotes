@@ -4,40 +4,29 @@ import { Loader, Loader2 } from "lucide-react"
 import { Button } from "./ui/button"
 import { useState } from "react"
 import { resolve } from "path";
-import { toast } from "sonner";
-import { useSonner } from "sonner";
+import { Toaster,toast } from "sonner";
+
 import { useRouter } from "next/navigation"
+import { error } from "console";
+import { logOutAction } from "@/src/actions/users";
 
 
-function LogoutButton() {
-    //const {toast} = useSonner;
+function LogOutButton() {
+    
     const router = useRouter();
     const [loading, setLoading] = useState(false);
 
     const handleLogOut = async () =>{
         setLoading(true)
 
-        await new Promise((resolve) => setTimeout(resolve,2000));
-        
-        const errorMessage =null;
+    const {errorMessage} = await logOutAction();
 
-        if(!errorMessage){  
-            
-        "some"
 
-        /* toast({
-                title:"Logged Out",
-                description:"You have been Successfully logged out",
-                variant:"Success",
-                });*/
-        router.push("/")
+        if(!errorMessage){ 
+        toast('Logged Out');
+        router.push("/");
         }else{ 
-            "error"
-            /*toast({
-                title:"Error",
-                description:"errorMessage",
-                variant:"destructive",
-                    });*/
+            toast('Error');
         }
 
 
@@ -58,4 +47,4 @@ return (
         );
 }
 
-export default LogoutButton
+export default LogOutButton

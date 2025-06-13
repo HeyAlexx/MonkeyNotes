@@ -8,7 +8,9 @@ import { startTransition, useTransition } from "react";
 import { Button } from "./ui/button";
 import Link from "next/link";
 import { Loader2 } from "lucide-react";
-//import {useToast} from "@/hooks/use-toast"
+import {Toaster,toast} from "sonner"
+import { loginAction, signUpAction } from "@/src/actions/users";
+
 
 
 type Props ={
@@ -20,13 +22,41 @@ type Props ={
 function Authform({type}: Props) {
     const isLoginForm = type === "Login";
 
-    const router =useRouter();
-    //const {toast} = useToast();
+    const router = useRouter();
+    
     const [isPending, startTransition] = useTransition();
 
 
     const handleSubmit  = (formData: FormData) => {
-        console.log("form submitted");
+
+        startTransition(async() => {
+            const email = formData.get("email") as string;
+            const password = formData.get("password") as string;
+            let errorMessage;
+            let title;
+            let description;
+            if(isLoginForm){
+                errorMessage = (await loginAction(email,password)).errorMessage;
+                title = "Logged in";
+                description = "You have been logged in successfully";
+            }else{
+                errorMessage = (await signUpAction(email, password)).errorMessage;
+                title = "Signed up";
+                description = "check your email for confirmation link";
+            }
+
+            if(!errorMessage){
+                toast(title,{description});
+                router.push("/");
+
+            }else{
+                toast('wrong');
+
+            }
+            
+        
+            router.refresh();
+        });
     };
 
 
@@ -37,7 +67,7 @@ function Authform({type}: Props) {
     return <form action={handleSubmit}>
         <CardContent className="grid w-full items-center gap-4">
             <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="email">Email</Label>
+                <Label className=" mx-2.5" htmlFor="email">Email</Label>
                 <Input         
                 id="email"       
                 name="email" 
@@ -48,7 +78,7 @@ function Authform({type}: Props) {
                 className="" />
             </div>
             <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="Password">Password</Label>
+                <Label className="mx-2.5" htmlFor="Password">Password</Label>
                 <Input         
                 id="password"       
                 name="password" 
@@ -66,10 +96,10 @@ function Authform({type}: Props) {
             <p className="text-xs">
                 {isLoginForm
                 ? "Don't have an account?"
-                : "Already have an account?"}{" "}                
+                : "Already have an account ?"}{" "}                
             <Link 
                 href={isLoginForm ? "/sign-up" : "/login"} 
-                className={`text-blue-500 underline ${isPending ? " pointer-events-none opacity-50" : 
+                className={`text-blue-500 underline ${isPending ? " pointer-events-none opacity-40" : 
                     ""}`}
                 >
                 {isLoginForm ? "Sign Up" : "Login"}
