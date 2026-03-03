@@ -1,5 +1,4 @@
 import { createServerClient } from '@supabase/ssr'
-import { log } from 'console'
 import { NextResponse, type NextRequest } from 'next/server'
 
 export async function middleware(request: NextRequest) {
@@ -18,10 +17,6 @@ export async function updateSession(request: NextRequest) {
   let supabaseResponse = NextResponse.next({
     request,
   })
-
-console.log("middleware ran");
-
-
 const supabase = createServerClient(
     process.env.SUPABASE_URL!,
     process.env.SUPABASE_ANON_KEY!,
@@ -45,10 +40,10 @@ const supabase = createServerClient(
     }
 )
 
-
-const {
- data: { user },
-} = await supabase.auth.getUser();
+const { error } = await supabase.auth.getUser();
+if (error && error.name !== "AuthSessionMissingError") {
+  console.error(error);
+}
 
 return supabaseResponse
 }

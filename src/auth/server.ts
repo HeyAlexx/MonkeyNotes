@@ -1,5 +1,4 @@
 import { createServerClient } from '@supabase/ssr'
-import { error, log } from 'console';
 import { cookies } from 'next/headers'
 
 export async function createClient() {
@@ -34,6 +33,9 @@ export async function getUser(){
     const userObject = await auth.getUser();
 
     if (userObject.error){
+        if (userObject.error.name === "AuthSessionMissingError") {
+            return null
+        }
         console.error(userObject.error);
         return null        
     }
